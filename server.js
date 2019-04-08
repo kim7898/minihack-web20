@@ -22,8 +22,6 @@ app.get("/", (req, res) => {
 
 app.post("/player", (req, res) => {
   console.log(req.body)
-
-
   QuestionModel.create(
     {
       player1: {
@@ -38,7 +36,7 @@ app.post("/player", (req, res) => {
       player4: {
         playerName4: req.body.playerName4
       },
-     
+
     },
     function (err) {
       if (err) return handleError(err);
@@ -47,10 +45,10 @@ app.post("/player", (req, res) => {
 })
 
 app.get("/games", (req, res) => {
-QuestionModel.find({}, (err, docs) => {
+  QuestionModel.find({}, (err, docs) => {
     if (err) console.log(err)
-    else res.redirect(`/games/${docs.length-1}`);
- })
+    else res.redirect(`/games/${docs.length - 1}`);
+  })
 })
 app.get("/find", (req, res) => {
   QuestionModel.find({}, (err, docs) => {
@@ -63,17 +61,17 @@ app.get("/find", (req, res) => {
 
 
 
-  app.get("/games/:roundgameid", (req, res) => {
+app.get("/games/:roundgameid", (req, res) => {
 
 
-    res.sendfile(__dirname + "/views/playscreen.html");
-  })
+  res.sendfile(__dirname + "/views/playscreen.html");
+})
 
-  
- 
 
-  app.listen(1998, (err) => {
-    if (err) console.log(err);
-    else console.log("Success Server");
-  });
+
+
+app.listen(1998, (err) => {
+  if (err) console.log(err);
+  else console.log("Success Server");
+});
 

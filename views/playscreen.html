@@ -52,113 +52,76 @@
         <div class="col">               <input size="8"  name="playerScore3" type="text" id="playerScore3" style="  border-radius: 15px; "></div>
         <div class="col">    <input size="8" name="playerScore4" type="text" id="playerScore4" style="  border-radius: 15px; "></div>
         </div>
-  
- </div>                    
-                
-
-                       <div id="content">
-                          
-
-                          
-                     </div> 
-                     <br>
-                    
-                  
-                  <div style="text-align:center;">
-                      <button type="submit" style="background-color:#BF1363 " style="" id="add" onclick="myfunction()"> <p style="color:white" > creat new game</p></button>
-
-                   </div>
-
-
-              <script>
-   
-                  var url= window.location.href;
-                  var arr=url.split("/")
-                  var roundgameid=arr[arr.length-1]       
-                             var i= 1 ; 
-                var score1=[]
-                var score2=[]
-                var score3=[]
-                var score4=[]
-              
-                function getSum(total, num) {
-                 return total + num;
-                }
-
-                
-               function myfunction(){          
-                var playerScore4= $("#playerScore4").val();
-                var playerScore3= $("#playerScore3").val();
-                var playerScore2= $("#playerScore2").val();
-                var playerScore1= $("#playerScore1").val();
-               scoreplayer1=parseInt(playerScore1);
-               score1[score1.length]=scoreplayer1
-               scoreplayer2=parseInt(playerScore2);
-               score2[score1.length]=scoreplayer2
-               scoreplayer3=parseInt(playerScore3);
-               score3[score1.length]=scoreplayer3
-               scoreplayer4=parseInt(playerScore4);
-               score4[score4.length]=scoreplayer4
-               num1=0- score1.reduce(getSum)
-               num2=0- score2.reduce(getSum)
-               num3=0-score3.reduce(getSum)
-               num4=0-score4.reduce(getSum)
-
-                $("#sum1").text(`${num1}`);
-                $("#sum2").text(`${num2}`);
-                $("#sum3").text(`${num3}`)
-                $("#sum4").text(`${num4}`)
-
-          
-                // num2=score2.reduce(getSum)
-                // num3=score3.reduce(getSum)
-                // num4=score4.reduce(getSum)
-                
-                
-                
-                              i+=1
-
-                 $("#content").append(`
-
-                 <div class="row" style="padding:10px"  >
-                  <div class="col" style="padding-left:50px">${i }</div>
+  </div>                    
+  <div id="content">
+  </div> 
+  <br>
+  <div style="text-align:center;">
+    <button type="submit" style="background-color:#BF1363 " style="" id="add" onclick="myfunction()"> <p style="color:white" > creat new game</p></button>
+  </div>
+   <script>
+        var url= window.location.href;
+        var arr=url.split("/")
+        var roundgameid=arr[arr.length-1]       
+        var i= 1 ; 
+        var score1=[]
+        var score2=[]
+        var score3=[]
+        var score4=[]
+        function getSum(total, num) {
+          return total + num;
+          }
+        function myfunction(){          
+          var playerScore4= $("#playerScore4").val();
+          var playerScore3= $("#playerScore3").val();
+          var playerScore2= $("#playerScore2").val();
+          var playerScore1= $("#playerScore1").val();
+          scoreplayer1=parseInt(playerScore1);
+          score1[score1.length]=scoreplayer1
+          scoreplayer2=parseInt(playerScore2);
+          score2[score1.length]=scoreplayer2
+          scoreplayer3=parseInt(playerScore3);
+          score3[score1.length]=scoreplayer3
+          scoreplayer4=parseInt(playerScore4);
+          score4[score4.length]=scoreplayer4
+          num1=0- score1.reduce(getSum)
+          num2=0- score2.reduce(getSum)
+          num3=0-score3.reduce(getSum)
+          num4=0-score4.reduce(getSum)
+          $("#sum1").text(`${num1}`);
+          $("#sum2").text(`${num2}`);
+          $("#sum3").text(`${num3}`)
+          $("#sum4").text(`${num4}`)
+          i+=1
+          $("#content").append(`
+            <div class="row" style="padding:10px"  >
+                <div class="col" style="padding-left:50px">${i }</div>
                 <div class="col" >  ${playerScore1} </div>
                 <div  class="col">  ${playerScore2} </div>
                 <div class="col" >  ${playerScore3} </div>
                 <div class="col" >  ${playerScore4} </div>
-
-                </div>
-             `)
-
-            
-            }
-
-                  
-                  $.ajax({
+            </div>
+             `)}
+            $.ajax({
             url:"/find",
             type :"get",
-           
             success:function(data){
               round=data[roundgameid]
-               player1=round.player1;
-               playerName1=player1.playerName1
-               $("#playerName1").text(playerName1)
-               player2=round.player2;
-               playerName2=player2.playerName2
-               $("#playerName2").text(playerName2)
-               player3=round.player3;
-               playerName3=player3.playerName3
-               console.log(data)
-               $("#playerName3").text(playerName3)
-               player4=round.player4;
-               playerName4=player4.playerName4
-             
-               $("#playerName4").text(playerName4)
-              
-              
-
-            }
-          })
-              </script>
+              player1=round.player1;
+              playerName1=player1.playerName1
+              $("#playerName1").text(playerName1)
+              player2=round.player2;
+              playerName2=player2.playerName2
+              $("#playerName2").text(playerName2)
+              player3=round.player3;
+              playerName3=player3.playerName3
+              console.log(data)
+              $("#playerName3").text(playerName3)
+              player4=round.player4;
+              playerName4=player4.playerName4
+              $("#playerName4").text(playerName4)
+              }
+             })
+</script>
 </body>
 </html>
